@@ -181,3 +181,4 @@ if not df.empty:
         unsafe_allow_html=True
     )
     st.download_button(label="Save", data=json_string, file_name="my_sales_data.json", mime="application/json")
+#โค้ดรัน streamlit run Dashboard.py
