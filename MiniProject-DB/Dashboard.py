@@ -121,7 +121,7 @@ if not df.empty:
     df['วันที่ขาย'] = pd.to_datetime(df['วันที่ขาย'])
     df['เดือน-ปี'] = df['วันที่ขาย'].dt.to_period('M').astype(str)
     
-    # [ปรับปรุง] เปลี่ยนกลุ่มประมวลผลให้รวมหมวดหมู่เข้าไปด้วย
+    # เปลี่ยนกลุ่มประมวลผลให้รวมหมวดหมู่เข้าไปด้วย
     df_monthly = df.groupby(['เดือน-ปี', 'หมวดหมู่'])['ยอดขาย'].sum().reset_index().sort_values('เดือน-ปี')
     
     fig_line = px.line(
@@ -136,7 +136,7 @@ if not df.empty:
     st.plotly_chart(fig_line, use_container_width=True)
 
     # 3. หา สินค้าขายดี 5 อันดับแรก (Top 5) (เพิ่มการโชว์หมวดหมู่ 🌈)
-    # [ปรับปรุง] รวมหมวดหมู่เข้ามาในกลุ่มเพื่อนำไปพล็อตสี
+    # รวมหมวดหมู่เข้ามาในกลุ่มเพื่อนำไปพล็อตสี
     df_top5 = df.groupby(['ชื่อสินค้า', 'หมวดหมู่'])['จำนวนที่ขายได้'].sum().reset_index()
     df_top5 = df_top5.sort_values(by='จำนวนที่ขายได้', ascending=False).head(5)
     
@@ -152,7 +152,7 @@ if not df.empty:
     fig_bar.update_layout(yaxis={'categoryorder':'total ascending'})
     st.plotly_chart(fig_bar, use_container_width=True)
 
-    # 4. ส่วนปุ่ม Save ข้อมูลออกมาเป็นไฟล์จริง (สไตล์เขียวมุมบนขวาตามที่คุณออกแบบ)
+    # 4. ส่วนปุ่ม Save ข้อมูลออกมาเป็นไฟล์จริง สไตล์เขียวมุมบนขวา
     json_string = df.to_json(orient='records', force_ascii=False, date_format='iso')
     st.markdown(
         """
