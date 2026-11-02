@@ -66,7 +66,7 @@ with st.form("input_form", clear_on_submit=True):
     with col_input1:
         prod_name = st.text_input("ชื่อสินค้า")
         prod_cat = st.selectbox("หมวดหมู่", ["ของกิน", "ของตกแต่ง", "ของขวัญ", "เครื่องประดับ", "อื่นๆ"])
-        cost_price = st.number_input("ราคาทุน (บาท)", min_value=0.0, step=1.0)
+        cost_price = st.number_input("ราคาทุน (ต่อชิ้น)", min_value=0.0, step=1.0)
         
     with col_input2:
         sell_price = st.number_input("ราคาขาย (บาท)", min_value=0.0, step=1.0)
